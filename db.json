@@ -1,0 +1,203 @@
+{
+
+  "Product": [
+    {
+      "id":"IP12",
+      "img":"https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-12_2__3.jpg",
+      "name":"Iphone 12 64gb",
+      "price":20390000,
+      "checkin":"17/01/2000",
+      "inventory":100,
+      "warranty_code":"KMIP12",
+      "guarantee":"2 năm",
+      "rating": 4.5
+  },
+    {
+      "id": "XR10",
+     "img":"https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/x/i/xiaomi-redmi-note-10_1.jpg",
+      "name":"Xiaomi Redmi Note 10",
+      "price":5090000 ,
+      "checkin":"22/02/2002",
+      "inventory":20,
+      "warranty_code":"ĐMXR10",
+      "guarantee":"1 năm",
+      "rating": 3
+    },
+    {
+      "id": "VV21",
+      "img":"https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/v/i/vivo-v21-5g-2.jpg",
+      "name":"Vivo V21 5G",
+      "price":8490000,
+      "checkin":"24/09/1998",
+      "inventory":10,
+      "warranty_code":"CMVV21",
+      "guarantee":"1 năm",
+      "rating": 3.5
+    },
+    {
+      "id": "SSG21",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/220833/samsung-galaxy-s21-tim-600x600.jpg",
+      "name":"Điện thoại Samsung Galaxy S21 5G",
+      "price":17990000,
+      "checkin":"22/04/2001",
+      "inventory":55,
+      "warranty_code":"ATSSG21",
+      "guarantee":"1 năm 6 tháng",
+      "rating": 4
+    },
+    {
+      "id": "XRN10",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/235971/xiaomi-redmi-note-10-5g-xanh-bong-dem-1-600x600.jpg",
+      "name":"Xiaomi Redmi Note 10 5G 8GB",
+      "price":5690000,
+      "checkin":"05/06/1990",
+      "inventory":30,
+      "warranty_code":"QWXRN10",
+      "guarantee":"1 năm",
+      "rating": 3.5
+    },
+    {
+      "id": "SSG21",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/229056/oppo-a93-den-14-600x600.jpg",
+      "name":"Điện thoại OPPO A93",
+      "price":5990000,
+      "checkin":"05/09/1999",
+      "inventory":20,
+      "warranty_code":"ERSSG21",
+      "guarantee":"2 năm",
+      "rating": 3
+    },
+    {
+      "id": "SSGA02",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/228999/samsung-galaxy-a02-xanhduong-600x600-600x600.jpg",
+      "name":"Điện thoại Samsung Galaxy A02 ",
+      "price":2590000,
+      "checkin":"25/09/2015",
+      "inventory":25,
+      "warranty_code":"RTSSGA02",
+      "guarantee":"2 năm",
+      "rating": 3
+    },
+    {
+      "id": "OPR5",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/220438/oppo-reno5-trang-600x600-1-600x600.jpg",
+      "name":"Điện thoại OPPO Reno5",
+      "price":8690000,
+      "checkin":"08/09/2001",
+      "inventory":25,
+      "warranty_code":"TYOPR5",
+      "guarantee":"1 năm 6 tháng",
+      "rating": 4
+    },
+    {
+      "id": "IP11",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/153856/iphone-xi-do-600x600.jpg",
+      "name":"Điện thoại iPhone 11 64GB",
+      "price":17490000,
+      "checkin":"17/04/1994",
+      "inventory":30,
+      "warranty_code":"OPIP11",
+      "guarantee":"1 năm 6 tháng",
+      "rating": 4
+    },
+    {
+      "id": "SSG21",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/228950/vivo-y51-bac-600x600-600x600.jpg",
+      "name":"Vivo Y51 (2020)",
+      "price": 5790000,
+      "checkin":"05/12/2015",
+      "inventory":55,
+      "warranty_code":"ASSSG21",
+      "guarantee":"1 năm 6 tháng",
+      "rating": 3
+    },
+    {
+      "id": "RC12",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/226733/realme-c12-do-13-600x600.jpg",
+      "name":"Realme C12",
+      "price":3490000,
+      "checkin":"22/04/2009",
+      "inventory":29,
+      "warranty_code":"ASC12",
+      "guarantee":"1 năm",
+      "rating": 4
+    },
+    {
+      "id": "SGM51",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/217536/samsung-galaxy-m51-trang-new-600x600-600x600.jpg",
+      "name":"Điện thoại Samsung Galaxy M51",
+      "price":8490000,
+      "checkin":"22/04/2015",
+      "inventory":30,
+      "warranty_code":"GHTM51",
+      "guarantee":"1 năm rưỡi",
+      "rating": 3
+    },
+    {
+      "id": "XR9T",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/233130/xiaomi-redmi-9t-6gb-110621-080650-600x600.jpg",
+      "name":"Xiaomi Redmi 9T (6GB/128GB) ",
+      "price":4990000,
+      "checkin":"22/04/2005",
+      "inventory":55,
+      "warranty_code":"XCSSG21",
+      "guarantee":"2 năm ",
+      "rating": 3
+    },
+    {
+      "id": "OPR5M",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/236024/oppo-reno5-marvel-thumb-600x600-600x600.jpg",
+      "name":"OPPO Reno5 Marvel",
+      "price":8230000,
+      "checkin":"23/08/2006",
+      "inventory":35,
+      "warranty_code":"FGOPR5M",
+      "guarantee":"1 năm ",
+      "rating": 3
+    },
+    {
+      "id": "SGZF25G",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/226099/samsung-galaxy-z-fold-2-vang-dong-600x600.jpg",
+      "name":"Điện thoại Samsung Galaxy Z Fold2 5G",
+      "price":50000000,
+      "checkin":"23/08/2020",
+      "inventory":100,
+      "warranty_code":"FGSGZF25G",
+      "guarantee":"1 năm ",
+      "rating": 2.5
+    },
+    {
+      "id": "OPFX3P5G",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/232190/oppo-find-x3-pro-black-001-1-600x600.jpg",
+      "name":"OPPO Find X3 Pro 5G",
+      "price":26990000,
+      "checkin":"23/08/2006",
+      "inventory":35,
+      "warranty_code":"GHOPFX3P5G",
+      "guarantee":"1 năm ",
+      "rating": 4
+    },
+    {
+      "id": "SGN20U5G",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/230867/samsunggalaxynote20ultratrangnew-600x600-600x600.jpg",
+      "name":"Điện thoại Samsung Galaxy Note 20 Ultra ",
+      "price":23990000,
+      "checkin":"23/08/2006",
+      "inventory":30,
+      "warranty_code":"AKSGN20U5G",
+      "guarantee":"1 năm ",
+      "rating": 5
+    },
+    {
+      "id": "IP12T",
+      "img":"https://cdn.tgdd.vn/Products/Images/42/228736/iphone-12-trang-600x600.jpg",
+      "name":"Điện thoại iPhone 12 128GB ",
+      "price":22420000,
+      "checkin":"23/08/2006",
+      "inventory":35,
+      "warranty_code":"FGIP12T",
+      "guarantee":"1 năm ",
+      "rating": 5
+    }
+  ]
+}

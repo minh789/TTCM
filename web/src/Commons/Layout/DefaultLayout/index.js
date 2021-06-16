@@ -1,0 +1,27 @@
+import React, { Component } from 'react';
+import {Route} from 'react-router-dom';
+import PropTypes from 'prop-types'
+class DefaultLayout extends Component {
+    render() {
+        const { component:MyComponent,...remainProps }=this.props;
+        return (
+           <Route 
+            {...remainProps} 
+            render = {routeProps => {
+                    return(
+                            <MyComponent {...routeProps}/>
+                    )
+                }
+            }
+           />
+        );
+    }
+}
+
+DefaultLayout.protoTypes={
+    path:PropTypes.string,
+    exact:PropTypes.bool,
+    component: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+    name:PropTypes.string,
+}
+export default DefaultLayout;
