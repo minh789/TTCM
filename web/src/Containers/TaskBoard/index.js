@@ -52,7 +52,7 @@ class TaskBoard extends Component {
     render() {
         return (
             <div>
-                {/* {this.renderSeachBox()} */}
+                {this.renderSeachBox()}
                 {this.renderBoard()}
             </div>
         );

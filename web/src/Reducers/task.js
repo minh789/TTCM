@@ -79,19 +79,20 @@ const reducer = (state = initialState, action) => {
             let quantity = state.Carts[action.payload].quantity;
             if (quantity > 1) {
                 state.numberCart--
-                state.Carts[action.payload].quantity--;
+                state.Carts[action.payload].quantity--
             }
 
             return {
-                ...state
+                ...state,
+                quantity: state.Carts[action.payload].quantity
+                
             }
 
         case taskConstants.INCREASE_QUANTITY:
             state.numberCart++
-            state.Carts[action.payload].quantity++;
-
             return {
-                ...state
+                ...state,
+                quantity: state.Carts[action.payload].quantity++
             }
 
             case taskConstants.DELETE_CART:

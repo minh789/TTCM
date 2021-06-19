@@ -53,6 +53,7 @@ class Cart extends Component {
         return total.toLocaleString('vi-VN');
     }
 
+
     showCartItem = (Carts) => {
         var { classes } = this.props;
         var result = null;
@@ -60,11 +61,6 @@ class Cart extends Component {
             result = Carts.map((list, key) => {
                 return (
                     <TableRow key={key}>
-                        <TableCell>
-                            <IconButton onClick={() => this.props.deleteCart(key)}>
-                                <DeleteForeverIcon style={{ color: red[500], fontSize: 30 }} />
-                            </IconButton>
-                        </TableCell>
                         <TableCell >
                             <CardMedia
                                 className={classes.media}
@@ -95,6 +91,11 @@ class Cart extends Component {
                         <TableCell>
                             {this.TotalPrice(list.price, list.quantity)} VNĐ
                        </TableCell>
+                       <TableCell>
+                            <IconButton onClick={() => this.props.deleteCart(key)}>
+                                <DeleteForeverIcon style={{ color: red[500], fontSize: 30 }} />
+                            </IconButton>
+                        </TableCell>
                     </TableRow>
                 );
             })
@@ -139,7 +140,7 @@ class Cart extends Component {
         });
     }
     render() {
-        var { classes, Carts } = this.props;
+        const { classes, Carts } = this.props;
         return (
             <div>
                 <Header />
@@ -147,7 +148,6 @@ class Cart extends Component {
                     <Table className={classes.table} >
                         <TableHead >
                             <TableRow className={classes.tableRow}>
-                                <TableCell align="left">Bỏ sản phẩm</TableCell>
                                 <TableCell align="left">Hình ảnh</TableCell>
                                 <TableCell align="left">Tên</TableCell>
                                 <TableCell align="left">Mã Bảo Hành</TableCell>
@@ -155,6 +155,7 @@ class Cart extends Component {
                                 <TableCell align="left">Số lượng</TableCell>
                                 <TableCell align="left">Giá</TableCell>
                                 <TableCell align="left">Tổng Giá</TableCell>
+                                <TableCell align="left">Bỏ sản phẩm</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -178,6 +179,7 @@ class Cart extends Component {
 const mapStateToProps = state => {
     return {
         Carts: state.task.Carts,
+        quantity:state.task.quantity,
     }
 }
 

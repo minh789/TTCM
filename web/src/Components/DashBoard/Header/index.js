@@ -126,7 +126,7 @@ class Header extends Component {
       <>
         <AppBar position="relative" >
           <Toolbar >
-          <Avatar alt="MinMin" src="abc.png"  className={classes.large} />
+          <Avatar alt="MinMin" src="Capture.png"  className={classes.large} />
           <Typography className={classes.MinMin} variant="h6"  noWrap>
           Web Điện Thoại K.Minh
           </Typography>

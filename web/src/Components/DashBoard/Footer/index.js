@@ -15,7 +15,6 @@ import { red } from '@material-ui/core/colors';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone';
 import MailIcon from '@material-ui/icons/Mail';
-import {Redirect } from 'react-router-dom';
 
 class Footer extends Component {
     render() {
@@ -40,7 +39,6 @@ class Footer extends Component {
                                 <List component="nav">
 
                                     <NavLink to="https://www.facebook.com/minhvuituoi">
-                                    {/* <Redirect to="https://www.facebook.com/minhvuituoi" /> */}
                                         <FacebookIcon className={classes.icon} color="primary" style={{ fontSize: 50 }} />
                                     </NavLink>
 
