@@ -11,14 +11,15 @@ const reducer = (state = initialState, action) => {
         case taskConstants.FETCH_TASK: {
             return {
                 ...state,
-                listTask:[],
+                listTask: [],
             };
         }
 
         case taskConstants.FETCH_TASK_SUCCESS: {
+            const {data}=action.payload;
             return {
                 ...state,
-                listTask: action.payload,
+                listTask: data,
             };
         }
 
@@ -29,21 +30,52 @@ const reducer = (state = initialState, action) => {
             };
         }
 
+        case taskConstants.ADD_TASK: {
+            return {
+                ...state,
+            };
+        }
+
+        case taskConstants.ADD_TASK_SUCCESS: {
+            const { data } = action.payload;
+        
+             return {
+                ...state,
+                listTask: [data].concat(state.listTask),
+            };
+        }
+
+        case taskConstants.ADD_TASK_FAILED: {
+            return {
+                ...state,
+            };
+        }
+
+        case taskConstants.FILTER_TASK_SUCCESS: {
+            const {data}=action.payload;
+            return {
+                ...state,
+                listTask:data,
+            };
+        }
+
         case taskConstants.GET_NUMBER_CART:
             return {
                 ...state
             }
 
+
+
         case taskConstants.ADD_CART: {
             if (state.numberCart === 0) {
                 let cart = {
-                    id:action.payload.id,
+                    id: action.payload.id,
                     quantity: 1,
                     name: action.payload.name,
                     img: action.payload.img,
                     price: action.payload.price,
                     guarantee: action.payload.guarantee,
-                    warranty_code:action.payload.warranty_code
+                    warranty_code: action.payload.warranty_code
                 }
                 state.Carts.push(cart);
             }
@@ -64,7 +96,7 @@ const reducer = (state = initialState, action) => {
                         img: action.payload.img,
                         price: action.payload.price,
                         guarantee: action.payload.guarantee,
-                        warranty_code:action.payload.warranty_code
+                        warranty_code: action.payload.warranty_code
                     }
                     state.Carts.push(_cart);
                 }
@@ -74,7 +106,7 @@ const reducer = (state = initialState, action) => {
                 numberCart: state.numberCart + 1
             }
         }
-        
+
         case taskConstants.DECREASE_QUANTITY:
             let quantity = state.Carts[action.payload].quantity;
             if (quantity > 1) {
@@ -85,25 +117,30 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 quantity: state.Carts[action.payload].quantity
-                
+
             }
 
         case taskConstants.INCREASE_QUANTITY:
+            let quantity__ = state.Carts[action.payload].quantity;
+            if(quantity__ < 10)
+            {
             state.numberCart++
+            state.Carts[action.payload].quantity++
+            }
             return {
                 ...state,
-                quantity: state.Carts[action.payload].quantity++
+                quantity: state.Carts[action.payload].quantity
             }
 
-            case taskConstants.DELETE_CART:
-                let quantity_ = state.Carts[action.payload].quantity;
-                return {
-                    ...state,
-                    numberCart: state.numberCart - quantity_,
-                    Carts: state.Carts.filter(item => {
-                        return item.id !== state.Carts[action.payload].id
-                    })
-                }
+        case taskConstants.DELETE_CART:
+            let quantity_ = state.Carts[action.payload].quantity;
+            return {
+                ...state,
+                numberCart: state.numberCart - quantity_,
+                Carts: state.Carts.filter(item => {
+                    return item.id !== state.Carts[action.payload].id
+                })
+            }
 
         default:
             return state;

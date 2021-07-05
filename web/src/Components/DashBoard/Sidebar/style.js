@@ -3,7 +3,7 @@ const style = theme => ({
         width:240,
         maxWidth: 240,
         zIndex: 10,
-        maxeight: '100%',
+        minHeight: '100%',
         position: 'relative',
     },
     menuLink:{

@@ -10,10 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { addCart } from './../../Actions/task'
 import Rating from '@material-ui/lab/Rating';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Button from '@material-ui/core/Button';
+import CardActions from '@material-ui/core/CardActions';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Link } from 'react-router-dom';
 
-// import StarIcon from '@material-ui/icons/Star';
-// import StarBorderIcon from '@material-ui/icons/StarBorder';
-// import StarHalfIcon from '@material-ui/icons/StarHalf';
 class TaskItem extends Component {
     render() {
         const { classes, sp } = this.props;
@@ -21,11 +23,29 @@ class TaskItem extends Component {
             <Grid item xs={8} sm={4} key={sp.name}>
                 <Card className={classes.root}>
                     <CardActionArea>
-                        <CardMedia
-                            className={classes.media}
-                            image={sp.img}
+                        <ButtonBase
+                            focusRipple
+                            className={classes.image}
+                            focusVisibleClassName={classes.focusVisible}
                             onClick={() => this.props.addCart(sp)}
-                        />
+                        >
+                            <CardMedia
+                                className={classes.media}
+                                image={sp.img}
+                            />
+                            <span className={classes.imageBackdrop} />
+                            <span className={classes.imageButton}>
+                                <Typography
+                                    component="span"
+                                    variant="subtitle1"
+                                    color="inherit"
+                                    className={classes.imageTitle}
+                                >
+                                    Thêm vào giỏ hàng
+                                    <span className={classes.imageMarked} />
+                                </Typography>
+                            </span>
+                        </ButtonBase>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2" >
                                 {sp.name}
@@ -38,6 +58,14 @@ class TaskItem extends Component {
                             </div>
                         </CardContent>
                     </CardActionArea>
+                    <CardActions>
+                        <Link to='/Customer information' className={classes.none}>
+                            <ShoppingCartIcon color='primary' className={classes.setIcon} />
+                            <Button size="big" color="primary">
+                                Xem giỏ hàng
+                            </Button>
+                        </Link>
+                    </CardActions>
                 </Card>
             </Grid>
         );

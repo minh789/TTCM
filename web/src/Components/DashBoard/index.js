@@ -1,28 +1,66 @@
 import React, { Component } from 'react';
 import style from './style';
 import { withStyles } from '@material-ui/styles'
-import ProTypes from 'prop-types'
 import Header from './Header'
 import Footer from './Footer'
+import cn from 'classnames';
+import Sidebar from './Sidebar'
+import {connect} from 'react-redux'
+import {compose,bindActionCreators} from 'redux';
+import *as uiActions from './../../Actions/ui';
 class DashBoard extends Component {
-    render() {
-        const { children, classes, name } = this.props;
+    handleToggleSidebar = value => {
+        const { uiActionCreators } = this.props;
+        const { showSidebar, hideSidebar } = uiActionCreators;
+        if (value === true) {
+          showSidebar();
+        } else {
+          hideSidebar();
+        }
+      };
+    
+      render() {
+        const { children, classes, name, showSidebar } = this.props;
         return (
-            <div className={classes.dashboard}>
-                <Header name={name} />
-                    <div className={classes.wrapperContent}>
-                        {children}
-                        <Footer/>
-                    </div>
+          <div className={classes.dashboard}>
+            <Header
+              name={name}
+              showSidebar={showSidebar}
+              onToggleSidebar={this.handleToggleSidebar}
+            />
+            <div className={cn(classes.wrapper, {
+                  [classes.shiftLeft]: showSidebar === false,
+                })}>
+              <Sidebar
+                showSidebar={showSidebar}
+                onToggleSidebar={this.handleToggleSidebar}
+              />
+              <div className={classes.wrapperContent}>
+                {children}
+              </div>
             </div>
+            <Footer/>
+          </div>
         );
+      }
     }
-}
+    
 
-DashBoard.ProTypes = {
-    children: ProTypes.object,
-    classes: ProTypes.object,
-    name: ProTypes.string
+const mapStateToProps =state=>{
+    return {
+        showSidebar:state.ui.showSidebar
+    };
 };
 
-export default withStyles(style)(DashBoard);
+const mapDispatchToProps =dispatch => {
+    return{
+        uiActionCreators:bindActionCreators(uiActions,dispatch) 
+    };
+};
+
+const withConnect =connect(
+    mapStateToProps,
+    mapDispatchToProps
+);
+
+export default compose(withConnect,withStyles(style)) (DashBoard);

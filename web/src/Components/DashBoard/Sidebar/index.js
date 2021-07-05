@@ -4,38 +4,32 @@ import sytle from './style';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { ROUTES } from '../../../Contants';
+import {  PRODUCT } from '../../../Contants';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 class Sidebar extends Component {
-    //Phải có hàm dựng constructor mới dùng state được 
-    constructor(props)
-    {
-        super(props);
-        this.state={
-            open:true,
-        };
-    }
-    toggleDrawer =value =>{
-        this.setState( {
-            open:value,
-            });
-    };
+    
+    toggleDrawer = value => {
+        const { onToggleSidebar } = this.props;
+        if (onToggleSidebar) {
+          onToggleSidebar(value);
+        }
+      };
 
     renderList() {
     const {classes}=this.props;
     let menuList=null;
     menuList =(
         <div className={classes.list}>
-            <List component="nav">
-                {ROUTES.map(item =>{
+            <List component="div">
+                {PRODUCT.map(item =>{
                     return (
                         <NavLink to={item.path} 
                         exact={item.exact} 
                         className={classes.menuLink} 
                         activeClassName={classes.menuLinkActive} 
                         key={item.path}>
-                        <ListItem  button>
+                        <ListItem className={classes.menuItem} button>
                             {item.name}
                         </ListItem>
                         </NavLink>                
@@ -47,11 +41,10 @@ class Sidebar extends Component {
     return menuList;
 }
     render() {
-        const {open} =this.state;
-        const {classes} =this.props;
+        const {classes,showSidebar} =this.props;
         return (
          <Drawer 
-          open={open} 
+          open={showSidebar} 
           onClose={() => this.toggleDrawer(false)}
           classes={{    
               paper:classes.drawerPaper,

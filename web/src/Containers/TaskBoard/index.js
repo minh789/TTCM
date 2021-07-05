@@ -5,9 +5,9 @@ import TaskItem from '../TaskItem';
 import sytle from './style';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import {bindActionCreators} from 'redux';
-// import *as  taskActions from'./../../Actions/task';
-import {fetchListTaskRequest} from './../../Actions/task'
+import {bindActionCreators} from 'redux';
+import *as  taskActions from'./../../Actions/task';
+// import {fetchListTask,filterTask} from './../../Actions/task'
 import SearchBox from '../../Components/SearchBox';
 
 class TaskBoard extends Component {
@@ -17,9 +17,6 @@ class TaskBoard extends Component {
         let GridSP = null;
         GridSP = (
             <Grid container
-                // direction="row"
-                // justify="space-around"
-                // alignItems="stretch"
                 spacing={7}
             >
                 {listTask.map((sp) => {
@@ -32,27 +29,33 @@ class TaskBoard extends Component {
         return GridSP;
     }
 
+    handleFilter = e =>{
+      const {value} =e.target;
+      const {taskActionCreators}=this.props;
+      const { filterTask}=taskActionCreators;
+      filterTask(value);
+    }
     renderSeachBox()
     {
         let searchBox =null;
         searchBox =(
-            <SearchBox/>
+            <SearchBox handleChange={this.handleFilter}/>
         );
         return searchBox;
     }
 
     componentDidMount(){
-        // const {taskActionCreators}=this.props;
-        // const { fetchListTaskRequest}=taskActionCreators;
-        // fetchListTaskRequest();
-        this.props.fetchListTaskRequest();
+        const {taskActionCreators}=this.props;
+        const { fetchListTask}=taskActionCreators;
+        fetchListTask();
+        // this.props.fetchListTask();
 
     }
 
     render() {
         return (
             <div>
-                {this.renderSeachBox()}
+                {/* {this.renderSeachBox()} */}
                 {this.renderBoard()}
             </div>
         );
@@ -63,7 +66,7 @@ TaskBoard.protoTypes ={
     // taskActionCreators:PropTypes.shape({
     //     fetchListTaskRequest:PropTypes.func,
     // }),
-    fetchListTaskRequest:PropTypes.func,
+    fetchListTask:PropTypes.func,
     listTask:PropTypes.array,
 }
 
@@ -75,8 +78,9 @@ const mapStateToProps = state => {
 
 const mapDispacthToProps= dispatch =>{
     return{
-        // taskActionCreators:bindActionCreators(taskActions,dispatch),
-        fetchListTaskRequest :()=>dispatch(fetchListTaskRequest())
+        taskActionCreators:bindActionCreators(taskActions,dispatch),
+        // fetchListTask:()=>dispatch(fetchListTask()),
+        // filterTask:()=>dispatch(filterTask()),
     }; 
 };
 

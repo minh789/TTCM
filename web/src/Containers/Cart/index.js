@@ -25,17 +25,20 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { green } from '@material-ui/core/colors';
+
+
 class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false
+            open: false,
+            open1: false
         };
     }
 
-    handleClose = () => {
+    handleClose = value => {
         this.setState({
-            open: false
+            open: value,
         });
     };
 
@@ -87,14 +90,15 @@ class Cart extends Component {
                         </TableCell>
                         <TableCell>
                             {list.price.toLocaleString('vi-VN')} VNĐ
-                       </TableCell>
+                        </TableCell>
                         <TableCell>
                             {this.TotalPrice(list.price, list.quantity)} VNĐ
-                       </TableCell>
-                       <TableCell>
-                            <IconButton onClick={() => this.props.deleteCart(key)}>
+                        </TableCell>
+                        <TableCell>
+                            <IconButton onClick={this.openDelete}>
                                 <DeleteForeverIcon style={{ color: red[500], fontSize: 30 }} />
                             </IconButton>
+                            {this.ConfirmDelete(key)}
                         </TableCell>
                     </TableRow>
                 );
@@ -103,14 +107,42 @@ class Cart extends Component {
         return result;
     }
 
-    paySuccess() {
+    ConfirmDelete(key) {
         const { open } = this.state;
-        const { classes } = this.props;
         let dialogPay = null;
         dialogPay = (
             < Dialog
                 open={open}
-                onClose={this.handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"Bạn có muốn xóa sản phẩm không "}</DialogTitle>
+                <DialogActions>
+                    <Button onClick={() => this.props.deleteCart(key)} color="primary">
+                        Có
+                    </Button>
+                    <Button onClick={() => this.handleClose(false)} color="primary">
+                        Không
+                    </Button>
+                </DialogActions>
+            </Dialog >
+        );
+        return dialogPay;
+    }
+
+    openDelete = () => {
+        this.setState({
+            open: true
+        });
+    }
+
+    paySuccess() {
+        const { open1 } = this.state;
+        const { classes } = this.props;
+        let dialogPay = null;
+        dialogPay = (
+            < Dialog
+                open={open1}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
@@ -136,9 +168,10 @@ class Cart extends Component {
 
     openForm = () => {
         this.setState({
-            open: true
+            open1: true
         });
     }
+
     render() {
         const { classes, Carts } = this.props;
         return (
@@ -163,14 +196,22 @@ class Cart extends Component {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                
                 <div className={classes.total}>
                     Tổng giá các sản phẩm : {this.showTotalAmount(Carts)} VNĐ
                 </div>
                 <div className={classes.pay} >
-                    <Button className={classes.paybtn} onClick={this.openForm}>
+                    {/* <Link to='/Customer information' className={classes.none}>
+                        <Button className={classes.information} >
+                            Nhập thông tin nhận hàng
+                        </Button>
+                    </Link> */}
+                
+                    <Button color='primary' variant='contained'  className={classes.paybtn} onClick={this.openForm}>
                         Thanh toán
-                </Button>
+                    </Button>
                     {this.paySuccess()}
+                    
                 </div>
             </div>
         );
@@ -179,7 +220,7 @@ class Cart extends Component {
 const mapStateToProps = state => {
     return {
         Carts: state.task.Carts,
-        quantity:state.task.quantity,
+        quantity: state.task.quantity,
     }
 }
 

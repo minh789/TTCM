@@ -20,7 +20,9 @@ import { connect } from 'react-redux'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import axiosService from '../../../Service/axiosService';
-
+import MenuIcon from '@material-ui/icons/Menu';
+import {bindActionCreators} from 'redux';
+import *as  taskActions from '../../../Actions/task';
 const menuId = 'primary-search-account-menu';
 
 class Header extends Component {
@@ -29,8 +31,11 @@ class Header extends Component {
   }; 
 
 
-  handleChange= (event) =>{
-   console.log( 'e:',event.target.value)
+  handleChange= e =>{
+    const {value} =e.target;
+    const {taskActionCreators}=this.props;
+    const { filterTask}=taskActionCreators;
+    filterTask(value); 
   }
 
 
@@ -48,7 +53,12 @@ class Header extends Component {
     this.setAnchorEl(null);
   };
 
-
+  handleToggleSidebar = () => {
+    const { showSidebar, onToggleSidebar } = this.props;
+    if (onToggleSidebar) {
+      onToggleSidebar(!showSidebar);
+    }
+  };
 
   handleLogout = () => {
     localStorage.removeItem(AUTHORIZATION_KEY);
@@ -121,14 +131,23 @@ class Header extends Component {
   }
 
   render() {
-    const { classes} = this.props;
+    const { classes,name} = this.props;
     return (
-      <>
+      <div className={classes.grow}>
         <AppBar position="relative" >
           <Toolbar >
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={this.handleToggleSidebar}
+          >
+            <MenuIcon />
+          </IconButton>
           <Avatar alt="MinMin" src="Capture.png"  className={classes.large} />
           <Typography className={classes.MinMin} variant="h6"  noWrap>
-          Web Điện Thoại K.Minh
+          {name}
           </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -162,7 +181,7 @@ class Header extends Component {
           </Toolbar>
         </AppBar>
         {this.renderDesktopMenu()}
-      </>
+     </div>
     );
   }
 }
@@ -182,4 +201,13 @@ const mapStateToProps = state => {
 }
 
 
-export default withStyles(style)(connect(mapStateToProps, null)(withRouter(Header)),);
+const mapDispacthToProps= dispatch =>{
+  return{
+      taskActionCreators:bindActionCreators(taskActions,dispatch),
+
+  }; 
+};
+
+
+
+export default withStyles(style)(connect(mapStateToProps, mapDispacthToProps)(withRouter(Header)),);

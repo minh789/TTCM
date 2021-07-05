@@ -7,14 +7,23 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { FormControlLabel, Checkbox } from '@material-ui/core';
+import { Form } from 'redux-form';
+import renderTextField from '../FormHelper/TextField';
+import renderNumber from '../FormHelper/Number';
+import { FORM_NAME } from '../../Contants/task';
+import { compose } from 'redux';
+import validate from './validate';
+import { reduxForm, Field } from 'redux-form';
+import CheckboxWithLabelAndError from '../FormHelper/CheckBox';
+
+const required= value => (!value ? "Không được bỏ trống" : undefined);
 
 class Signup extends Component {
     render() {
-        const { classes } = this.props;
+        const { classes,invalid,submitting } = this.props;
         return (
             <Grid container component="main" className={classes.root}>
                 <CssBaseline />
@@ -29,39 +38,48 @@ class Signup extends Component {
                                 Đăng ký tài khoản để tiếp tục mua sắm ^^
                             </Typography>
                         </div>
-                        <form className={classes.form} noValidate>
-                            <TextField
-                                id='email'
+                        <Form className={classes.form} noValidate>
+                            <Field
+                                id='Email'
                                 label='Email'
-                                type='text'
+                                name='email'
                                 className={classes.textField}
                                 fullWidth
-                                margin='normal'
+                                autoFocus
+                                component={renderTextField}
                             />
-                            <TextField
+                            <Field
                                 id='password'
-                                label='Password'
+                                name='password'
+                                label='Mật khẩu'
                                 type='password'
+                                component={renderNumber}
                                 className={classes.textField}
                                 fullWidth
                                 margin='normal'
                             />
 
-                            <TextField
-                                id='cpassword'
-                                label='Confirm Password'
+                            <Field
+                                id='confirmPassword'
+                                name='confirmpassword'
+                                label='Xác nhận lại mật khẩu'
                                 type='password'
+                                component={renderNumber}
                                 className={classes.textField}
                                 fullWidth
                                 margin='normal'
                             />
-                            <FormControlLabel
-                                control={<Checkbox value='agree' />}
+                            <Field
+                                color="primary"
+                                name="agreeToTerms"
+                                classes={{checked: classes.checked, checkboxError: classes.checkboxAgreeError}}
+                                component={CheckboxWithLabelAndError}
                                 label='Tôi đã đọc chính sách và đồng ý điều khoản'
                                 className={classes.fullWidth}
+                                validate={[required]}
                             />
-                            <Link to='/'>
-                                <Button variant='contained' color='secondary' fullWidth type='submit'>
+                          <Link className={classes.none} to='./login'>
+                                <Button  disabled={invalid || submitting} variant='contained' color='secondary' fullWidth type='submit'>
                                     Đăng ký tài khoản
                                 </Button>
                             </Link>
@@ -70,7 +88,7 @@ class Signup extends Component {
                                     <Button>Đã có tài khoản</Button>
                                 </Link>
                             </div>
-                        </form>
+                        </Form>
                     </div>
                 </Grid>
             </Grid>
@@ -78,4 +96,9 @@ class Signup extends Component {
     }
 }
 
-export default withStyles(style)(Signup);
+const withReduxForm = reduxForm({
+    form: FORM_NAME,
+    validate
+});
+
+export default compose(withReduxForm, withStyles(style))(Signup);

@@ -6,7 +6,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 class SearchBox extends Component {
     render() {
-      const { classes, textChange, value } = this.props;
+      const { classes, handleChange } = this.props;
       return (
         <div className={classes.search}>
         <div className={classes.searchIcon}>
@@ -15,10 +15,9 @@ class SearchBox extends Component {
         <form className={classes.container} noValidate autoComplete="off">
           <TextField
             className={classes.textField}
-            onChange={textChange}
+            onChange={handleChange}
             margin="normal"
             placeholder="Tìm kiếm tên sản phẩm "
-            value={value}
           />
         </form>
         </div>
